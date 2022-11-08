@@ -10,9 +10,18 @@ namespace vitteApp
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-        public int Connect()
+        List<ServerUser> users = new List<ServerUser>();
+
+        public void Connect(string username, string passwd)
         {
-            throw new NotImplementedException();
+            ServerUser user = new ServerUser()
+            {
+                Username = username,
+                Password = passwd,
+                operationContext = OperationContext.Current
+            };
+
+            users.Add(user);
         }
 
         public void Disconnect(int ID)
