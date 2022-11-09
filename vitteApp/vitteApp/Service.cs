@@ -14,14 +14,7 @@ namespace vitteApp
 
         public void Connect(string username, string passwd)
         {
-            ServerUser user = new ServerUser()
-            {
-                Username = username,
-                Password = passwd,
-                operationContext = OperationContext.Current
-            };
-
-            users.Add(user);
+            ServerUser user = new ServerUser(username, passwd);
         }
 
         public void Disconnect(int ID)

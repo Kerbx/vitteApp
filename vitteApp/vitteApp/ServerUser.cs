@@ -12,8 +12,30 @@ namespace vitteApp
     {
         public string Username { get; set; }
 
-        public string Password { get; set; }
+        private string Password { get; set; }
 
         public OperationContext operationContext { get; set; }
+
+        public ServerUser(string username, string password)
+        {
+            if (!checkUser(username, password))
+            {
+                Console.WriteLine("INVALID USERNAME OR PASSWORD. TRY AGAIN.");
+                this.Username = null;
+                this.Password = null;
+                this.operationContext = null;
+            }
+            else
+            {
+                this.Username = username;
+                this.Password = password;
+                this.operationContext = OperationContext.Current;
+            }
+        }
+
+        private bool checkUser(string username, string password)
+        {
+            return true;
+        }
     }
 }
