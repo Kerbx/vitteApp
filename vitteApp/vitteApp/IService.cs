@@ -11,9 +11,9 @@ namespace vitteApp
     public interface IService
     {
         [OperationContract]
-        void Connect(string username, string passwd);
+        string Connect(string username, string passwd);
         [OperationContract]
-        void Disconnect(int ID);
+        void Disconnect(string username);
         [OperationContract(IsOneWay = true)]
         void Get(string query);
     }

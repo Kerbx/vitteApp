@@ -13,13 +13,8 @@ namespace vitteApp
     {
         public string Username { get; set; }
 
-        private string Password { get; set; }
-
         public OperationContext operationContext { get; set; }
 
-        public ServerUser(string username, string password)
-        {
-        }
     }
 
     public class Database

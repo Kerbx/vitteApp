@@ -12,17 +12,36 @@ namespace vitteApp
     {
         List<ServerUser> users = new List<ServerUser>();
 
-        public Service()
+        public string Connect(string username, string passwd)
         {
+            Database database = new Database();
+
+            if(database.checkUser(username, passwd))
+            {
+                ServerUser user = new ServerUser
+                {
+                    Username = username,
+                    operationContext = OperationContext.Current
+                };
+                users.Add(user);
+
+                return username;
+            }
+            else
+            {
+                Console.WriteLine("Invalid username or password.");
+                return "";
+            }
         }
 
-        public void Connect(string username, string passwd)
+        public void Disconnect(string username)
         {
-        }
+            var user = users.FirstOrDefault(i => i.Username == username);
 
-        public void Disconnect(int ID)
-        {
-            throw new NotImplementedException();
+            if(user != null)
+            {
+                users.Remove(user);
+            }
         }
 
         public void Get(string query)
