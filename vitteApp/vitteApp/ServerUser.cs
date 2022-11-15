@@ -35,6 +35,10 @@ namespace vitteApp
 
         private bool checkUser(string username, string password)
         {
+            System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection();
+            connection.ConnectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={Environment.CurrentDirectory}\db\students.mdf;Integrated Security=True;Connect Timeout=30";
+            Console.WriteLine("CONNECTION!");
+            connection.Open();
             return true;
         }
     }
