@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
-
+using System.Net.Configuration;
+using System.Data.SqlClient;
 
 namespace vitteApp
 {
@@ -18,28 +19,52 @@ namespace vitteApp
 
         public ServerUser(string username, string password)
         {
-            if (!checkUser(username, password))
-            {
-                Console.WriteLine("INVALID USERNAME OR PASSWORD. TRY AGAIN.");
-                this.Username = null;
-                this.Password = null;
-                this.operationContext = null;
-            }
-            else
-            {
-                this.Username = username;
-                this.Password = password;
-                this.operationContext = OperationContext.Current;
-            }
         }
+    }
 
-        private bool checkUser(string username, string password)
+    public class Database
+    {
+        private System.Data.SqlClient.SqlConnection ConnectDatabase()
         {
             System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection();
             connection.ConnectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={Environment.CurrentDirectory}\db\students.mdf;Integrated Security=True;Connect Timeout=30";
-            Console.WriteLine("CONNECTION!");
-            connection.Open();
-            return true;
+            return connection;
+        }
+        public bool checkUser(string username, string password)
+        {
+            System.Data.SqlClient.SqlConnection connection = ConnectDatabase();
+
+            using (var cmd = new SqlCommand() { Connection = connection })
+            {
+                cmd.CommandText = "SELECT username, passwd FROM students WHERE username = @Username;";
+                cmd.Parameters.AddWithValue("@Username", username);
+
+                connection.Open();
+
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    if (reader.GetString(1).ToString() == password)
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                    else
+                    {
+                        connection.Close();
+                        return false;
+                    }
+                }
+                else
+                {
+                    connection.Close();
+                    return false;
+
+                }
+            }
         }
     }
 }

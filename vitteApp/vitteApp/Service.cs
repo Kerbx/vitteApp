@@ -14,12 +14,10 @@ namespace vitteApp
 
         public Service()
         {
-            Connect("ale", "password");
         }
 
         public void Connect(string username, string passwd)
         {
-            ServerUser user = new ServerUser("Lukich", "ale");
         }
 
         public void Disconnect(int ID)
