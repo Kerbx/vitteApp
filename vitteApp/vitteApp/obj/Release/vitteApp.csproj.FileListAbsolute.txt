@@ -1,0 +1,7 @@
+C:\Users\spudi\source\repos\vitteApp\vitteApp\vitteApp\bin\Release\vitteApp.dll.config
+C:\Users\spudi\source\repos\vitteApp\vitteApp\vitteApp\bin\Release\vitteApp.dll
+C:\Users\spudi\source\repos\vitteApp\vitteApp\vitteApp\bin\Release\vitteApp.pdb
+C:\Users\spudi\source\repos\vitteApp\vitteApp\vitteApp\obj\Release\vitteApp.csprojAssemblyReference.cache
+C:\Users\spudi\source\repos\vitteApp\vitteApp\vitteApp\obj\Release\vitteApp.csproj.CoreCompileInputs.cache
+C:\Users\spudi\source\repos\vitteApp\vitteApp\vitteApp\obj\Release\vitteApp.dll
+C:\Users\spudi\source\repos\vitteApp\vitteApp\vitteApp\obj\Release\vitteApp.pdb
