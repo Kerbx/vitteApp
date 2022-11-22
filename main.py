@@ -2,15 +2,17 @@ import kivy
 kivy.require('2.1.0')
 
 from kivy.app import App
-from kivy.uix.label import Label
 
-class SideMenu():
-    pass
+from mainScreen import MainScreen
 
 
 class MyApp(App):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.title = 'vitteApp'
+        
     def build(self):
-        return Label(text='KURWA KRET')
+        return MainScreen()
     
     
 if __name__ == '__main__':
