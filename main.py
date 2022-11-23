@@ -3,6 +3,7 @@ kivy.require('2.1.0')
 
 from kivy.app import App
 
+from loginScreen import LoginScreen
 from mainScreen import MainScreen
 
 
@@ -12,7 +13,7 @@ class MyApp(App):
         self.title = 'vitteApp'
         
     def build(self):
-        return MainScreen()
+        return LoginScreen()
     
     
 if __name__ == '__main__':
