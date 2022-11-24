@@ -1,3 +1,5 @@
+from typing import Union
+
 import sqlite3
 
 
@@ -9,41 +11,52 @@ class Database():
     def __del__(self):
         self.connection.close()
         
-    def createQuery(self, query):
-        return self.cursor.execute(query ).fetchall()
+    def createQuery(self, query: str) -> Union[list, bool]:
+        try:
+            answer = self.cursor.execute(query).fetchall()
+            return answer
+        except sqlite3.Error as error:
+            return False
+         
     
-    def createUser(self, username, password):
+    def createUser(self, username: str, password: str) -> bool:
         if not username or not password:
-            return None
+            return False
         try:
             for i in self.createQuery('select username from students;'):
                 if username == i[0]:
-                    return None
-        except sqlite3.Error as error:
-            return None
-            
-        else:
+                    return False
+                
             self.cursor.execute(f'insert into students (username, password) values ("{username}", "{password}");')
             self.connection.commit()
+            return True
         
-    def deleteUser(self, username, password):
+        except sqlite3.Error as error:
+            return False
+            
+    def deleteUser(self, username: str, password: str) -> bool:
         if not username or not password:
-            return None
+            return False
         try:
             for i in self.createQuery('select username from students;'):
                 if username == i[0]:
                     self.cursor.execute(f'delete from students where username = "{username}";')
                     self.connection.commit()
+                    return True
+                else:
+                    continue
+            return False
         except sqlite3.Error as error:
-            return None
+            return error
 
-    def checkLogin(self, username, password):
+    def checkLogin(self, username: str, password: str) -> bool:
         if not username or not password:
-            return None
+            return False
         try:
             if not self.cursor.execute(f'select username, password from students where username = "{username}" and password = "{password}";'):
-                return None
+                return False
             else:
                 return True
         except sqlite3.Error as error:
-            return None
+            return False
+        
