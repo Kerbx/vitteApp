@@ -18,10 +18,10 @@ class Database():
         except sqlite3.Error as error:
             return False
          
-    
     def createUser(self, username: str, password: str) -> bool:
         if not username or not password:
             return False
+        
         try:
             for i in self.createQuery('select username from students;'):
                 if username == i[0]:
@@ -47,13 +47,13 @@ class Database():
                     continue
             return False
         except sqlite3.Error as error:
-            return error
+            return False
 
     def checkLogin(self, username: str, password: str) -> bool:
         if not username or not password:
             return False
         try:
-            if not self.cursor.execute(f'select username, password from students where username = "{username}" and password = "{password}";'):
+            if not self.cursor.execute(f'select username, password from students where username = "{username}" and password = "{password}";').fetchall():
                 return False
             else:
                 return True
