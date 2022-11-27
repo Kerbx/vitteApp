@@ -35,7 +35,7 @@ Builder.load_string("""
             text: 'Click'
             width: 100
             on_press: on_login()
-                    """)
+""")
 
 
 class LoginScreen(Screen):
@@ -56,3 +56,4 @@ class LoginScreen(Screen):
             return
         else:
             self.manager.current = 'main'
+            
