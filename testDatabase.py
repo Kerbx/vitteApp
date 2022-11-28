@@ -16,7 +16,7 @@ class TestDatabase(unittest.TestCase):
         
     def testCheckLogin(self):
         self.assertEqual(self.db.checkLogin('admin', 'admin'), True)
-        self.assertEqual(self.db.checkLogin('usr', 'password'), True)
+        self.assertEqual(self.db.checkLogin('username', 'password'), True)
         self.assertEqual(self.db.checkLogin('', ''), False)
         self.assertEqual(self.db.checkLogin('admin', ''), False)
         self.assertEqual(self.db.checkLogin('', 'password'), False)    

@@ -1,7 +1,7 @@
 import kivy
 kivy.require('2.1.0')
 
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.config import Config
 
 from kivy.uix.screenmanager import ScreenManager
@@ -15,7 +15,7 @@ Config.set('graphics', 'height', '600')
 Config.write()
 
 
-class MyApp(App):
+class MyApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.title = 'vitteApp'

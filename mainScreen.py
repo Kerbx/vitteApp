@@ -2,20 +2,44 @@ import kivy
 kivy.require('2.1.0')
 
 from kivy.lang import Builder
-from kivy.uix.button import Button
-from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import Screen
 
 
 Builder.load_string("""
 <MainScreen>:
-    GridLayout:
-        cols: 1
-        rows: 3
-        padding: 0
-        
-        Label:
-            text: 'Main page.'
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 1
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст"
+                    color: "black"
+                    font_style: "Subtitle1"
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст2"
+                    color: "black"
+                    font_style: "Caption"
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            text: "ale"
+                        OneLineListItem:
+                            text: "ALE"
 """)
 
 
