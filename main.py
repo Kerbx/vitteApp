@@ -6,8 +6,10 @@ from kivy.config import Config
 
 from kivy.uix.screenmanager import ScreenManager
 
+from calendarScreen import CalendarScreen
 from loginScreen import LoginScreen
 from mainScreen import MainScreen
+from tasksScreen import TasksScreen
 
 
 Config.set('graphics', 'width', '400')
@@ -22,9 +24,13 @@ class MyApp(MDApp):
         self.screenManager = ScreenManager()
         self.loginScreen = LoginScreen(name='login')
         self.mainScreen = MainScreen(name='main')
+        self.calendarScreen = CalendarScreen(name='calendar')
+        self.tasksScreen = TasksScreen(name='tasks')
         
         self.screenManager.add_widget(self.loginScreen)
         self.screenManager.add_widget(self.mainScreen)
+        self.screenManager.add_widget(self.calendarScreen)
+        self.screenManager.add_widget(self.tasksScreen)
         
     def build(self):
         self.screenManager.current = 'login'

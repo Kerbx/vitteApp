@@ -49,5 +49,6 @@ class LoginScreen(Screen):
             Popup(title='Login fail', content=Label(text='Неправильный логин или пароль.'), size_hint=(None, None), size=(260, 260)).open()
             return
         else:
+            self.ids.passwd.text = ''
             self.manager.current = 'main'
             

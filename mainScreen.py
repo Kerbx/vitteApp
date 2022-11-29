@@ -36,12 +36,30 @@ Builder.load_string("""
                     font_style: "Caption"
                 ScrollView:
                     MDList:
-                        OneLineListItem:
-                            text: "ale"
-                        OneLineListItem:
-                            text: "ALE"
+                        OneLineIconListItem:
+                            text: "Расписание"
+                            on_press:root.openCalendar()
+                            IconLeftWidget:
+                                icon: "calendar"
+                        OneLineIconListItem:
+                            text: "Задания"
+                            on_press:root.openTasks()
+                            IconLeftWidget:
+                                icon: "lead-pencil"
+                        OneLineIconListItem:
+                            text: "Выйти"
+                            on_press:root.logout()
+                            IconLeftWidget:
+                                icon: "logout"
 """)
 
 
 class MainScreen(Screen):
-    pass
+    def openCalendar(self):
+        self.manager.current = 'calendar'
+        
+    def openTasks(self):
+        self.manager.current = 'tasks'
+        
+    def logout(self):
+        self.manager.current = 'login'
