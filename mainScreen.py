@@ -37,6 +37,11 @@ Builder.load_string("""
                 ScrollView:
                     MDList:
                         OneLineIconListItem:
+                            text: "Главная"
+                            on_press:root.openMain()
+                            IconLeftWidget:
+                                icon: "home"
+                        OneLineIconListItem:
                             text: "Расписание"
                             on_press:root.openCalendar()
                             IconLeftWidget:
@@ -55,11 +60,18 @@ Builder.load_string("""
 
 
 class MainScreen(Screen):
+    def openMain(self):
+        self.ids.nav_drawer.set_state("close")
+        self.manager.current = 'main'
+        
     def openCalendar(self):
+        self.ids.nav_drawer.set_state("close")
         self.manager.current = 'calendar'
         
     def openTasks(self):
+        self.ids.nav_drawer.set_state("close")
         self.manager.current = 'tasks'
         
     def logout(self):
+        self.ids.nav_drawer.set_state("close")
         self.manager.current = 'login'
