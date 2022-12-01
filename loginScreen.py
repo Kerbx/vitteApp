@@ -1,9 +1,10 @@
 import kivy
 kivy.require('2.1.0')
 
+from kivymd.uix.snackbar import Snackbar
+
+from kivy.core.window import Window
 from kivy.lang import Builder
-from kivy.uix.label import Label
-from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 
 from database import Database
@@ -14,21 +15,37 @@ Builder.load_string("""
     GridLayout:
         cols: 1
         rows: 3
-        padding: dp(50), dp(250)
-        
-        TextInput:
-            id: username
-            multiline: False
-            hint_text: 'Login'
-            on_text_validate: root.focus_passwd()
-        TextInput:
-            id: passwd
-            multiline: False
-            hint_text: 'Password'
-            on_text_validate: root.on_login()
-        Button:
-            text: 'Click'
-            on_press: root.on_login()
+        padding: dp(50), dp(200)
+        spacing: '10dp'
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'top'
+            MDTextField:
+                id: username
+                multiline: False
+                mode: "fill"
+                hint_text: 'Введите ваш логин'
+                required: True
+                helper_text_mode: "on_error"
+                on_text_validate: root.focus_passwd()
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'top'
+            MDTextField:
+                id: passwd
+                multiline: False
+                mode: "fill"
+                hint_text: 'Введите ваш пароль'
+                password: True
+                required: True
+                helper_text_mode: "on_error"
+                on_text_validate: root.on_login()
+        AnchorLayout:
+            anchor_x: 'center'
+            MDRaisedButton:
+                text: 'Войти'
+                md_bg_color: "orange"
+                on_press: root.on_login()
 """)
 
 
@@ -41,12 +58,12 @@ class LoginScreen(Screen):
         passwd = self.ids.passwd.text
         
         if not username or not passwd:
-            Popup(title='Login fail', content=Label(text='Введите логин и пароль!'), size_hint=(None, None), size=(260, 260)).open()
+            Snackbar(text="Введите логин и пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
             return
         
         db = Database()
-        if not db.checkLogin(username, passwd):
-            Popup(title='Login fail', content=Label(text='Неправильный логин или пароль.'), size_hint=(None, None), size=(260, 260)).open()
+        if not db.checkLogin(username.strip(), passwd.strip()):
+            Snackbar(text="Неправильный логин или пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
             return
         else:
             self.ids.passwd.text = ''
