@@ -2,7 +2,6 @@ import kivy
 kivy.require('2.1.0')
 
 from kivymd.app import MDApp
-from kivy.config import Config
 
 from kivy.uix.screenmanager import ScreenManager
 
@@ -10,11 +9,6 @@ from calendarScreen import CalendarScreen
 from loginScreen import LoginScreen
 from mainScreen import MainScreen
 from tasksScreen import TasksScreen
-
-
-Config.set('graphics', 'width', '400')
-Config.set('graphics', 'height', '600')
-Config.write()
 
 
 class MyApp(MDApp):

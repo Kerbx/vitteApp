@@ -15,8 +15,8 @@ Builder.load_string("""
     GridLayout:
         cols: 1
         rows: 3
-        padding: dp(50), dp(200)
         spacing: '10dp'
+        padding: dp(50), dp(200)
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'top'
@@ -42,7 +42,8 @@ Builder.load_string("""
                 on_text_validate: root.on_login()
         AnchorLayout:
             anchor_x: 'center'
-            MDRaisedButton:
+            MDFlatButton:
+
                 text: 'Войти'
                 md_bg_color: "orange"
                 on_press: root.on_login()
@@ -58,12 +59,14 @@ class LoginScreen(Screen):
         passwd = self.ids.passwd.text
         
         if not username or not passwd:
-            Snackbar(text="Введите логин и пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+
+            # Snackbar(text="Введите логин и пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
             return
         
         db = Database()
-        if not db.checkLogin(username.strip(), passwd.strip()):
-            Snackbar(text="Неправильный логин или пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+        if not db.checkLogin(username, passwd):
+            # Snackbar(text="Неправильный логин или пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+
             return
         else:
             self.ids.passwd.text = ''
