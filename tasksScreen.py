@@ -17,6 +17,13 @@ Builder.load_string("""
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
                     Widget:
+                        ScrollView:
+                            BoxLayout:
+                                orientation: 'vertical'
+                                spacing: '10dp'
+                                MDLabel:
+                                    text: "Hello, world."
+                                    color: "green"
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -57,6 +64,7 @@ Builder.load_string("""
                             IconLeftWidget:
                                 icon: "logout"
 """)
+
 
 class TasksScreen(Screen):
     def openMain(self):

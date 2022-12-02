@@ -17,7 +17,6 @@ Builder.load_string("""
         rows: 3
         spacing: '10dp'
         padding: dp(50), dp(200)
-        
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'top'
@@ -44,6 +43,7 @@ Builder.load_string("""
         AnchorLayout:
             anchor_x: 'center'
             MDFlatButton:
+
                 text: 'Войти'
                 md_bg_color: "orange"
                 on_press: root.on_login()
@@ -59,12 +59,14 @@ class LoginScreen(Screen):
         passwd = self.ids.passwd.text
         
         if not username or not passwd:
+
             # Snackbar(text="Введите логин и пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
             return
         
         db = Database()
         if not db.checkLogin(username, passwd):
             # Snackbar(text="Неправильный логин или пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+
             return
         else:
             self.ids.passwd.text = ''
