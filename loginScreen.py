@@ -43,9 +43,7 @@ Builder.load_string("""
         AnchorLayout:
             anchor_x: 'center'
             MDFlatButton:
-
                 text: 'Войти'
-                md_bg_color: "orange"
                 on_press: root.on_login()
 """)
 

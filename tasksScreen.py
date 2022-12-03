@@ -59,6 +59,11 @@ Builder.load_string("""
                             IconLeftWidget:
                                 icon: "lead-pencil"
                         OneLineIconListItem:
+                            text: "Настройки"
+                            on_press:root.openSettings()
+                            IconLeftWidget:
+                                icon: "settings-helper"
+                        OneLineIconListItem:
                             text: "Выйти"
                             on_press:root.logout()
                             IconLeftWidget:
@@ -82,3 +87,8 @@ class TasksScreen(Screen):
     def logout(self):
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'login'
+
+    def openSettings(self):
+        self.ids.nav_drawer.set_state("close")
+        self.manager.current = 'settings'
+        

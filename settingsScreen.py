@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import Screen
 
 
 Builder.load_string("""
-<MainScreen>:
+<SettingsScreen>:
     MDNavigationLayout:
         ScreenManager:
             Screen:
@@ -16,7 +16,14 @@ Builder.load_string("""
                         title: "Электронная среда"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
-                    Widget:
+                    ScrollView:
+                        AnchorLayout:
+                            anchor_x: 'center'
+                            anchor_y: 'top'
+                            MDList:
+                                OneLineListItem:
+                                    text: "Темная/светлая тема"
+                                    on_press: app.switchThemeStyle()
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -64,14 +71,14 @@ Builder.load_string("""
 """)
 
 
-class MainScreen(Screen):
+class SettingsScreen(Screen):
     def openMain(self):
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'main'
         
     def openCalendar(self):
-        self.ids.nav_drawer.set_state("close")
         self.manager.current = 'calendar'
+        self.ids.nav_drawer.set_state("close")
         
     def openTasks(self):
         self.ids.nav_drawer.set_state("close")
@@ -84,4 +91,3 @@ class MainScreen(Screen):
     def openSettings(self):
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'settings'
-        
