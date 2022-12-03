@@ -60,12 +60,12 @@ class LoginScreen(Screen):
         
         if not username or not passwd:
 
-            # Snackbar(text="Введите логин и пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+            Snackbar(text="Введите логин и пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
             return
         
         db = Database()
         if not db.checkLogin(username, passwd):
-            # Snackbar(text="Неправильный логин или пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+            Snackbar(text="Неправильный логин или пароль!", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
 
             return
         else:
