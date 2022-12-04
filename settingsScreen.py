@@ -8,8 +8,8 @@ from kivy.uix.screenmanager import Screen
 Builder.load_string("""
 <SettingsScreen>:
     MDNavigationLayout:
-        ScreenManager:
-            Screen:
+        MDScreenManager:
+            MDScreen:
                 BoxLayout:
                     orientation: 'vertical'
                     MDTopAppBar:
@@ -17,13 +17,10 @@ Builder.load_string("""
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
                     ScrollView:
-                        AnchorLayout:
-                            anchor_x: 'center'
-                            anchor_y: 'top'
-                            MDList:
-                                OneLineListItem:
-                                    text: "Темная/светлая тема"
-                                    on_press: app.switchThemeStyle()
+                        MDList:
+                            OneLineListItem:
+                                text: "Темная/светлая тема"
+                                on_press: app.switchThemeStyle()
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -33,13 +30,11 @@ Builder.load_string("""
                     size_hint_y: None
                     height: self.texture_size[1]
                     text: "Текст"
-                    color: "black"
                     font_style: "Subtitle1"
                 MDLabel:
                     size_hint_y: None
                     height: self.texture_size[1]
                     text: "Текст2"
-                    color: "black"
                     font_style: "Caption"
                 ScrollView:
                     MDList:

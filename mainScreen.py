@@ -15,7 +15,7 @@ Builder.load_string("""
                     MDTopAppBar:
                         title: "Электронная среда"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-                        elevation: 1
+                        elevation: 2
                     Widget:
         MDNavigationDrawer:
             id: nav_drawer
@@ -26,13 +26,11 @@ Builder.load_string("""
                     size_hint_y: None
                     height: self.texture_size[1]
                     text: "Текст"
-                    color: "black"
                     font_style: "Subtitle1"
                 MDLabel:
                     size_hint_y: None
                     height: self.texture_size[1]
                     text: "Текст2"
-                    color: "black"
                     font_style: "Caption"
                 ScrollView:
                     MDList:

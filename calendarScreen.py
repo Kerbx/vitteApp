@@ -26,13 +26,11 @@ Builder.load_string("""
                     size_hint_y: None
                     height: self.texture_size[1]
                     text: "Текст"
-                    color: "black"
                     font_style: "Subtitle1"
                 MDLabel:
                     size_hint_y: None
                     height: self.texture_size[1]
                     text: "Текст2"
-                    color: "black"
                     font_style: "Caption"
                 ScrollView:
                     MDList:

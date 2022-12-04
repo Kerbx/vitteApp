@@ -16,6 +16,7 @@ class MyApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.theme_cls.primary_palette = "Red"
+        self.theme_cls.theme_style_switch_animation = True
         
         self.title = 'vitteApp'
         self.screenManager = ScreenManager()
