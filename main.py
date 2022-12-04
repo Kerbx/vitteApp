@@ -31,7 +31,7 @@ class MyApp(MDApp):
         self.screenManager.add_widget(self.calendarScreen)
         self.screenManager.add_widget(self.tasksScreen)
         self.screenManager.add_widget(self.settingsScreen)
-        
+
         self.theme_cls.theme_style_switch_animation = True
         self.theme_cls.theme_style_switch_animation_duration = 0.8
         

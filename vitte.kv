@@ -98,7 +98,15 @@
                         title: "Электронная среда"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
-                    Widget:
+                    AnchorLayout:
+                        anchor_x: 'center'
+                        anchor_y: 'top'
+                        MDFlatButton:
+                            text: "Выбрать день для показа расписания"
+                            on_press: root.openDate()
+                    MDList:
+                        id: schedule
+
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -152,13 +160,9 @@
                         title: "Электронная среда"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
-                    Widget:
-                        ScrollView:
-                            BoxLayout:
-                                orientation: 'vertical'
-                                spacing: '10dp'
-                                MDLabel:
-                                    text: "Hello, world."
+                    ScrollView:
+                        MDLabel:
+                            text: "Hello, world."
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
