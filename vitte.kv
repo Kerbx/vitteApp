@@ -1,0 +1,261 @@
+<LoginScreen>:
+    GridLayout:
+        cols: 1
+        rows: 3
+        spacing: '10dp'
+        padding: dp(50), dp(200)
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'top'
+            MDTextField:
+                id: username
+                multiline: False
+                mode: "fill"
+                hint_text: 'Введите ваш логин'
+                required: True
+                helper_text_mode: "on_error"
+                on_text_validate: root.focus_passwd()
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'top'
+            MDTextField:
+                id: passwd
+                multiline: False
+                mode: "fill"
+                hint_text: 'Введите ваш пароль'
+                password: True
+                required: True
+                helper_text_mode: "on_error"
+                on_text_validate: root.on_login()
+        AnchorLayout:
+            anchor_x: 'center'
+            MDFlatButton:
+                md_bg_color: app.theme_cls.primary_color
+                text: 'Войти'
+                on_press: root.on_login()
+
+<MainScreen>:
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 2
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст"
+                    font_style: "Subtitle1"
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст2"
+                    font_style: "Caption"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: "Главная"
+                            on_press:root.openMain()
+                            IconLeftWidget:
+                                icon: "home"
+                        OneLineIconListItem:
+                            text: "Расписание"
+                            on_press:root.openCalendar()
+                            IconLeftWidget:
+                                icon: "calendar"
+                        OneLineIconListItem:
+                            text: "Задания"
+                            on_press:root.openTasks()
+                            IconLeftWidget:
+                                icon: "lead-pencil"
+                        OneLineIconListItem:
+                            text: "Настройки"
+                            on_press:root.openSettings()
+                            IconLeftWidget:
+                                icon: "settings-helper"
+                        OneLineIconListItem:
+                            text: "Выйти"
+                            on_press:root.logout()
+                            IconLeftWidget:
+                                icon: "logout"
+
+<CalendarScreen>:
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 1
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст"
+                    font_style: "Subtitle1"
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст2"
+                    font_style: "Caption"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: "Главная"
+                            on_press:root.openMain()
+                            IconLeftWidget:
+                                icon: "home"
+                        OneLineIconListItem:
+                            text: "Расписание"
+                            on_press:root.openCalendar()
+                            IconLeftWidget:
+                                icon: "calendar"
+                        OneLineIconListItem:
+                            text: "Задания"
+                            on_press:root.openTasks()
+                            IconLeftWidget:
+                                icon: "lead-pencil"
+                        OneLineIconListItem:
+                            text: "Настройки"
+                            on_press:root.openSettings()
+                            IconLeftWidget:
+                                icon: "settings-helper"
+                        OneLineIconListItem:
+                            text: "Выйти"
+                            on_press:root.logout()
+                            IconLeftWidget:
+                                icon: "logout"
+
+<TasksScreen>:
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 1
+                    Widget:
+                        ScrollView:
+                            BoxLayout:
+                                orientation: 'vertical'
+                                spacing: '10dp'
+                                MDLabel:
+                                    text: "Hello, world."
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст"
+                    font_style: "Subtitle1"
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст2"
+                    font_style: "Caption"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: "Главная"
+                            on_press:root.openMain()
+                            IconLeftWidget:
+                                icon: "home"
+                        OneLineIconListItem:
+                            text: "Расписание"
+                            on_press:root.openCalendar()
+                            IconLeftWidget:
+                                icon: "calendar"
+                        OneLineIconListItem:
+                            text: "Задания"
+                            on_press:root.openTasks()
+                            IconLeftWidget:
+                                icon: "lead-pencil"
+                        OneLineIconListItem:
+                            text: "Настройки"
+                            on_press:root.openSettings()
+                            IconLeftWidget:
+                                icon: "settings-helper"
+                        OneLineIconListItem:
+                            text: "Выйти"
+                            on_press:root.logout()
+                            IconLeftWidget:
+                                icon: "logout"
+
+<SettingsScreen>:
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 1
+                    ScrollView:
+                        MDList:
+                            OneLineListItem:
+                                text: "Темная/светлая тема"
+                                on_press: app.switchThemeStyle()
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст"
+                    font_style: "Subtitle1"
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст2"
+                    font_style: "Caption"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            on_press:root.openMain()
+                            text: "Главная"
+                            IconLeftWidget:
+                                icon: "home"
+                        OneLineIconListItem:
+                            text: "Расписание"
+                            on_press:root.openCalendar()
+                            IconLeftWidget:
+                                icon: "calendar"
+                        OneLineIconListItem:
+                            text: "Задания"
+                            on_press:root.openTasks()
+                            IconLeftWidget:
+                                icon: "lead-pencil"
+                        OneLineIconListItem:
+                            text: "Настройки"
+                            on_press:root.openSettings()
+                            IconLeftWidget:
+                                icon: "settings-helper"
+                        OneLineIconListItem:
+                            text: "Выйти"
+                            on_press:root.logout()
+                            IconLeftWidget:
+                                icon: "logout"

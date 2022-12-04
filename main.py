@@ -3,7 +3,11 @@ kivy.require('2.1.0')
 
 from kivymd.app import MDApp
 
-from kivy.uix.screenmanager import ScreenManager
+from kivy.lang import Builder
+Builder.load_file('vitte.kv')
+
+from kivymd.uix.screenmanager import ScreenManager
+
 
 from calendarScreen import CalendarScreen
 from loginScreen import LoginScreen
@@ -13,11 +17,7 @@ from tasksScreen import TasksScreen
 
 
 class MyApp(MDApp):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.theme_cls.primary_palette = "Red"
-        self.theme_cls.theme_style_switch_animation = True
-        
+    def build(self):
         self.title = 'vitteApp'
         self.screenManager = ScreenManager()
         self.loginScreen = LoginScreen(name='login')
@@ -32,15 +32,24 @@ class MyApp(MDApp):
         self.screenManager.add_widget(self.tasksScreen)
         self.screenManager.add_widget(self.settingsScreen)
         
-    def switchThemeStyle(self):
-        self.theme_cls.theme_style = "Dark" if self.theme_cls.theme_style == "Light" else "Light"
-        self.theme_cls.primary_palette = "Orange" if self.theme_cls.primary_palette == "Red" else "Red"
+        self.theme_cls.theme_style_switch_animation = True
+        self.theme_cls.theme_style_switch_animation_duration = 0.8
         
-    def build(self):
+        self.theme_cls.theme_style = 'Dark'
+        self.theme_cls.primary_palette = "Orange"
+        
         self.screenManager.current = 'login'
         return self.screenManager
     
-    
+    def switchThemeStyle(self):
+        self.theme_cls.primary_palette = (
+            "Orange" if self.theme_cls.primary_palette == "Red" else "Red"
+        )
+        self.theme_cls.theme_style = (
+            "Dark" if self.theme_cls.theme_style == "Light" else "Light"
+        )
+
+        
 if __name__ == '__main__':
     MyApp().run()
     
