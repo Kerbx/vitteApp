@@ -12,6 +12,7 @@ from kivymd.uix.screenmanager import ScreenManager
 from calendarScreen import CalendarScreen
 from loginScreen import LoginScreen
 from mainScreen import MainScreen
+from mainScreenTeacher import MainScreenTeacher
 from settingsScreen import SettingsScreen
 from tasksScreen import TasksScreen
 
@@ -22,12 +23,14 @@ class MyApp(MDApp):
         self.screenManager = ScreenManager()
         self.loginScreen = LoginScreen(name='login')
         self.mainScreen = MainScreen(name='main')
+        self.mainTeacher = MainScreenTeacher(name='mainTeacher')
         self.calendarScreen = CalendarScreen(name='calendar')
         self.tasksScreen = TasksScreen(name='tasks')
         self.settingsScreen = SettingsScreen(name='settings')
         
         self.screenManager.add_widget(self.loginScreen)
         self.screenManager.add_widget(self.mainScreen)
+        self.screenManager.add_widget(self.mainTeacher)
         self.screenManager.add_widget(self.calendarScreen)
         self.screenManager.add_widget(self.tasksScreen)
         self.screenManager.add_widget(self.settingsScreen)

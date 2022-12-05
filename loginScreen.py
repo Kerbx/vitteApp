@@ -29,5 +29,8 @@ class LoginScreen(MDScreen):
             return
         else:
             self.ids.passwd.text = ''
-            self.manager.current = 'main'
+            if db.checkIsTeacher(username):
+                self.manager.current = 'mainTeacher'
+            else:
+                self.manager.current = 'main'
             
