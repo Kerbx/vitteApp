@@ -18,7 +18,7 @@ class Database():
         except sqlite3.Error as error:
             return False
          
-    def createUser(self, username: str, password: str) -> bool:
+    def createUser(self, username: str, password: str, isTeacher: bool=False) -> bool:
         if not username or not password:
             return False
         
@@ -27,7 +27,7 @@ class Database():
                 if username == i[0]:
                     return False
                 
-            self.cursor.execute(f'insert into students (username, password) values ("{username}", "{password}");')
+            self.cursor.execute(f'insert into students (username, password, isTeacher) values ("{username}", "{password}", {isTeacher});')
             self.connection.commit()
             return True
         
@@ -49,6 +49,17 @@ class Database():
         except sqlite3.Error as error:
             return False
 
+    def checkIsTeacher(self, username: str) -> bool:
+        if not username:
+            return False
+        try:
+            if self.createQuery(f'select isTeacher from students where username="{username}"')[0][0]:
+                return True
+            else:
+                return False
+        except:
+            return False
+        
     def checkLogin(self, username: str, password: str) -> bool:
         if not username or not password:
             return False
