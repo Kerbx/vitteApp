@@ -34,6 +34,234 @@
                 text: 'Войти'
                 on_press: root.on_login()
 
+<MainScreenTeacher>:
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда - преподаватель"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 2
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст"
+                    font_style: "Subtitle1"
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст2"
+                    font_style: "Caption"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: "Главная"
+                            on_press:root.openMainTeacher()
+                            IconLeftWidget:
+                                icon: "home"
+                        OneLineIconListItem:
+                            text: "Расписание"
+                            on_press:root.openCalendarTeacher()
+                            IconLeftWidget:
+                                icon: "calendar"
+                        OneLineIconListItem:
+                            text: "Задания"
+                            on_press:root.openTasksTeacher()
+                            IconLeftWidget:
+                                icon: "lead-pencil"
+                        OneLineIconListItem:
+                            text: "Настройки"
+                            on_press:root.openSettingsTeacher()
+                            IconLeftWidget:
+                                icon: "settings-helper"
+                        OneLineIconListItem:
+                            text: "Выйти"
+                            on_press:root.logout()
+                            IconLeftWidget:
+                                icon: "logout"
+
+<TasksScreenTeacher>:
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда - преподаватель"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 1
+                    ScrollView:
+                        MDLabel:
+                            text: "Hello, world."
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст"
+                    font_style: "Subtitle1"
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст2"
+                    font_style: "Caption"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: "Главная"
+                            on_press:root.openMainTeacher()
+                            IconLeftWidget:
+                                icon: "home"
+                        OneLineIconListItem:
+                            text: "Расписание"
+                            on_press:root.openCalendarTeacher()
+                            IconLeftWidget:
+                                icon: "calendar"
+                        OneLineIconListItem:
+                            text: "Задания"
+                            on_press:root.openTasksTeacher()
+                            IconLeftWidget:
+                                icon: "lead-pencil"
+                        OneLineIconListItem:
+                            text: "Настройки"
+                            on_press:root.openSettingsTeacher()
+                            IconLeftWidget:
+                                icon: "settings-helper"
+                        OneLineIconListItem:
+                            text: "Выйти"
+                            on_press:root.logout()
+                            IconLeftWidget:
+                                icon: "logout"
+
+<CalendarScreenTeacher>:
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда - преподаватель"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 1
+                    AnchorLayout:
+                        anchor_x: 'center'
+                        anchor_y: 'top'
+                        MDFlatButton:
+                            text: "Выбрать день для показа расписания"
+                            on_press: root.openDate()
+                    MDList:
+                        id: schedule
+    MDNavigationDrawer:
+        id: nav_drawer
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: '10dp'
+            MDLabel:
+                size_hint_y: None
+                height: self.texture_size[1]
+                text: "Текст"
+                font_style: "Subtitle1"
+            MDLabel:
+                size_hint_y: None
+                height: self.texture_size[1]
+                text: "Текст2"
+                font_style: "Caption"
+            ScrollView:
+                MDList:
+                    OneLineIconListItem:
+                        text: "Главная"
+                        on_press:root.openMainTeacher()
+                        IconLeftWidget:
+                            icon: "home"
+                    OneLineIconListItem:
+                        text: "Расписание"
+                        on_press:root.openCalendarTeacher()
+                        IconLeftWidget:
+                            icon: "calendar"
+                    OneLineIconListItem:
+                        text: "Задания"
+                        on_press:root.openTasksTeacher()
+                        IconLeftWidget:
+                            icon: "lead-pencil"
+                    OneLineIconListItem:
+                        text: "Настройки"
+                        on_press:root.openSettingsTeacher()
+                        IconLeftWidget:
+                            icon: "settings-helper"
+                    OneLineIconListItem:
+                        text: "Выйти"
+                        on_press:root.logout()
+                        IconLeftWidget:
+                            icon: "logout"
+<SettingsScreenTeacher>:
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Электронная среда - преподаватель"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        elevation: 1
+                    ScrollView:
+                        MDList:
+                            OneLineListItem:
+                                text: "Темная/светлая тема"
+                                on_press: app.switchThemeStyle()
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст"
+                    font_style: "Subtitle1"
+                MDLabel:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Текст2"
+                    font_style: "Caption"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            on_press:root.openMainTeacher()
+                            text: "Главная"
+                            IconLeftWidget:
+                                icon: "home"
+                        OneLineIconListItem:
+                            text: "Расписание"
+                            on_press:root.openCalendarTeacher()
+                            IconLeftWidget:
+                                icon: "calendar"
+                        OneLineIconListItem:
+                            text: "Задания"
+                            on_press:root.openTasksTeacher()
+                            IconLeftWidget:
+                                icon: "lead-pencil"
+                        OneLineIconListItem:
+                            text: "Настройки"
+                            on_press:root.openSettingsTeacher()
+                            IconLeftWidget:
+                                icon: "settings-helper"
+                        OneLineIconListItem:
+                            text: "Выйти"
+                            on_press:root.logout()
+                            IconLeftWidget:
+                                icon: "logout"
+                       
 <MainScreen>:
     MDNavigationLayout:
         MDScreenManager:
@@ -87,60 +315,7 @@
                             on_press:root.logout()
                             IconLeftWidget:
                                 icon: "logout"
-<MainScreenTeacher>:
-    MDNavigationLayout:
-        MDScreenManager:
-            MDScreen:
-                BoxLayout:
-                    orientation: 'vertical'
-                    MDTopAppBar:
-                        title: "Электронная среда - преподаватель"
-                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-                        elevation: 2
-                    Widget:
-        MDNavigationDrawer:
-            id: nav_drawer
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: '10dp'
-                MDLabel:
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    text: "Текст"
-                    font_style: "Subtitle1"
-                MDLabel:
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    text: "Текст2"
-                    font_style: "Caption"
-                ScrollView:
-                    MDList:
-                        OneLineIconListItem:
-                            text: "Главная"
-                            on_press:root.openMain()
-                            IconLeftWidget:
-                                icon: "home"
-                        OneLineIconListItem:
-                            text: "Расписание"
-                            on_press:root.openCalendar()
-                            IconLeftWidget:
-                                icon: "calendar"
-                        OneLineIconListItem:
-                            text: "Задания"
-                            on_press:root.openTasks()
-                            IconLeftWidget:
-                                icon: "lead-pencil"
-                        OneLineIconListItem:
-                            text: "Настройки"
-                            on_press:root.openSettings()
-                            IconLeftWidget:
-                                icon: "settings-helper"
-                        OneLineIconListItem:
-                            text: "Выйти"
-                            on_press:root.logout()
-                            IconLeftWidget:
-                                icon: "logout"
-                                
+
 <CalendarScreen>:
     MDNavigationLayout:
         MDScreenManager:

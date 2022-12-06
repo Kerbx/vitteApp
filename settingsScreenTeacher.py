@@ -4,7 +4,7 @@ kivy.require('2.1.0')
 from kivymd.uix.screen import MDScreen
 
 
-class MainScreenTeacher(MDScreen):
+class SettingsScreenTeacher(MDScreen):
     def openMainTeacher(self):
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'mainTeacher'
