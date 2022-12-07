@@ -89,6 +89,7 @@
                                 icon: "logout"
 
 <TasksScreenTeacher>:
+    on_enter:root.update()
     MDNavigationLayout:
         MDScreenManager:
             MDScreen:
@@ -98,9 +99,14 @@
                         title: "Электронная среда - преподаватель"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
+                    MDRaisedButton:
+                        pos_hint: {'center_x': 0.5,'center_y': 0.0}
+                        text: "Добавить задание"
+                        on_press:root.addTask()
                     ScrollView:
-                        MDLabel:
-                            text: "Hello, world."
+                        MDList:
+                            id: tasksTeacher
+                            
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -379,6 +385,7 @@
                                 icon: "logout"
 
 <TasksScreen>:
+    on_enter:root.update()
     MDNavigationLayout:
         MDScreenManager:
             MDScreen:
@@ -389,8 +396,8 @@
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
                     ScrollView:
-                        MDLabel:
-                            text: "Hello, world."
+                        MDList:
+                            id: tasksStud
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
