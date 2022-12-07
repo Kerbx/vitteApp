@@ -13,7 +13,13 @@ def acceptThread(clientSocket, address):
     
     if 'upload' in received:
         clientSocket.send('receiving'.encode())
-        received = clientSocket.recv(BUFFER_SIZE).decode()
+        try:
+            received = clientSocket.recv(BUFFER_SIZE).decode()
+        except UnicodeDecodeError:
+            print('[!] SOME PROBLEM WITH DECODE.')
+            print('[!] KILLING PROCESS...')
+            clientSocket.close()
+            return
         filename, filesize = received.split(SEPARATOR)
         
         filename = os.path.basename(filename)
