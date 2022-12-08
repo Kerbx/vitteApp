@@ -60,6 +60,18 @@ def acceptThread(clientSocket, address):
         print(f'[*] {address} DISCONNECTED.')
     elif 'send' in received:
         pass
+    elif 'delete' in received:
+        toDelete = clientSocket.recv(BUFFER_SIZE).decode()
+        print(toDelete)
+        toDelete = toDelete.split(SEPARATOR)
+        print(toDelete)
+        for i in toDelete:
+            try:
+                os.remove(f'teacher/{i}')
+            except Exception as e:
+                print(f'[!] ERROR:\n{e}')
+            
+        clientSocket.close()
     else:
         print(f'[*] NO MODE IN MESSAGE FROM {address}. THERE IS IT:\n{received}')
     

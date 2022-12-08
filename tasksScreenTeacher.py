@@ -14,6 +14,7 @@ from kivy.core.window import Window
 from kivymd.uix.filemanager import MDFileManager
 from kivymd.uix.list import OneLineIconListItem
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.selection.selection import SelectionItem
 from kivymd.uix.snackbar import Snackbar
 
 
@@ -90,19 +91,40 @@ class TasksScreenTeacher(MDScreen):
                 sock.close()
             
             Snackbar(text="Файл успешно загружен.", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
-            
+    
+    def deleteItems(self, instance_selection_list):
+        self.separator = "<SEPARATOR>"
+        self.bufferSize = 4096
+        self.host = "192.168.1.120"
+        self.port = 5555
+        
+        sock = socket.socket()
+        try:
+            sock.connect((self.host, self.port))
+        except OSError:
+            sock.close()
+            Snackbar(text="Нет подключения к серверу...", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+            return
+        sock.send('delete'.encode())
+        message = ''
+        for i in instance_selection_list.get_selected_list_items():
+            message += str(i.children[1].text)
+            message += self.separator
+        sock.sendall(message.encode())
+        sock.close()
+        
+        self.update()
+        
     def setSelectionMode(self, instance_selection_list, mode):
         if mode:
-            md_bg_color = self.md_bg_color
             left_action_items = [
                 [
                     "close",
                     lambda x: self.ids.tasksTeacher.unselected_all(),
                 ]
             ]
-            right_action_items = [["trash-can"], ["dots-vertical"]]
+            right_action_items = [["trash-can", lambda x: self.deleteItems(instance_selection_list)]]
         else:
-            md_bg_color = (0, 0, 0, 1)
             left_action_items = [["menu", lambda x: self.ids.nav_drawer.set_state("open")]]
             right_action_items = []
             self.ids.toolbar.title = "Электронная среда - преподаватель"
