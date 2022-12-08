@@ -95,17 +95,24 @@
             MDScreen:
                 BoxLayout:
                     orientation: 'vertical'
+                    spacing: '10dp'
                     MDTopAppBar:
+                        id:toolbar
                         title: "Электронная среда - преподаватель"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
-                    MDRaisedButton:
-                        pos_hint: {'center_x': 0.5,'center_y': 0.0}
-                        text: "Добавить задание"
-                        on_press:root.addTask()
+                    AnchorLayout:
+                        anchor_x: 'center'
+                        anchor_y: 'top'
+                        MDRaisedButton:
+                            text: "Добавить задание"
+                            on_press:root.addTask()
                     ScrollView:
-                        MDList:
+                        MDSelectionList:
                             id: tasksTeacher
+                            on_selected: root.onSelected(*args)
+                            on_unselected: root.onUnselected(*args)
+                            on_selected_mode: root.setSelectionMode(*args)
                             
         MDNavigationDrawer:
             id: nav_drawer

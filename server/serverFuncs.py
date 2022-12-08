@@ -9,10 +9,13 @@ SEPARATOR = "<SEPARATOR>"
 
 def acceptThread(clientSocket, address):
     print(f'[*] {address} CONNECTED TO SERVER.')
-    received = clientSocket.recv(BUFFER_SIZE).decode()
-    
+    try:
+        received = clientSocket.recv(BUFFER_SIZE).decode()
+    except UnicodeDecodeError:
+        return
     if 'upload' in received:
         clientSocket.send('receiving'.encode())
+        
         try:
             received = clientSocket.recv(BUFFER_SIZE).decode()
         except UnicodeDecodeError:
@@ -20,6 +23,7 @@ def acceptThread(clientSocket, address):
             print('[!] KILLING PROCESS...')
             clientSocket.close()
             return
+        
         filename, filesize = received.split(SEPARATOR)
         
         filename = os.path.basename(filename)
@@ -30,13 +34,28 @@ def acceptThread(clientSocket, address):
         with open(f'teacher/{filename}', "wb") as file:
             while True:
                 bytesRead = clientSocket.recv(BUFFER_SIZE)
-                print(bytesRead)
                 if not bytesRead:    
                     break
+                
                 file.write(bytesRead)
                 progress.update(len(bytesRead))
+                
         print(f'[*] FILE FROM {address} UPLOADED.')
         
+        clientSocket.close()
+        print(f'[*] {address} DISCONNECTED.')
+    elif 'update' in received:
+        filenames = next(os.walk('teacher/'), (None, None, []))[2]
+        
+        if not filenames:
+            clientSocket.close()
+            print('[!] NO FILES IN teacher/')
+            print(f'[*] {address} DISCONNECTED.')
+            return
+        
+        for i in filenames:
+            clientSocket.send((i + SEPARATOR).encode())
+            
         clientSocket.close()
         print(f'[*] {address} DISCONNECTED.')
     elif 'send' in received:

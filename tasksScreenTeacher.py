@@ -3,23 +3,50 @@ import socket
 
 import kivy
 kivy.require('2.1.0')
-
-from android.storage import primary_external_storage_path
-from android.permissions import request_permissions, Permission
-request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
+try:
+    from android.storage import primary_external_storage_path
+    from android.permissions import request_permissions, Permission
+    request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
+except ModuleNotFoundError:
+    pass
+from kivy.animation import Animation
 from kivy.core.window import Window
 from kivymd.uix.filemanager import MDFileManager
+from kivymd.uix.list import OneLineIconListItem
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.snackbar import Snackbar
 
 
 class TasksScreenTeacher(MDScreen):
     def update(self):
-        separator = "<SEPARATOR>"
-        bufferSize = 4096
-        host = "0.0.0.0"
-        port = 5555
+        while self.ids.tasksTeacher.children:
+            for i in self.ids.tasksTeacher.children:
+                self.ids.tasksTeacher.remove_widget(i)
+            
+        self.separator = "<SEPARATOR>"
+        self.bufferSize = 4096
+        self.host = "192.168.1.120"
+        self.port = 5555
         
+        sock = socket.socket()
+        try:
+            sock.connect((self.host, self.port))
+        except OSError:
+            sock.close()
+            Snackbar(text="Нет подключения к серверу...", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+            return
+        sock.send('update'.encode())
+        _received = ''
+        while True:
+            received = sock.recv(self.bufferSize).decode()
+            if not received:
+                _received = _received.split(self.separator)
+                for i in _received:
+                    self.ids.tasksTeacher.add_widget(OneLineIconListItem(text=i))
+                break
+            _received += received
+        sock.close()
+            
     def addTask(self):
         self.separator = "<SEPARATOR>"
         self.bufferSize = 4096
@@ -63,6 +90,36 @@ class TasksScreenTeacher(MDScreen):
                 sock.close()
             
             Snackbar(text="Файл успешно загружен.", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+            
+    def setSelectionMode(self, instance_selection_list, mode):
+        if mode:
+            md_bg_color = self.md_bg_color
+            left_action_items = [
+                [
+                    "close",
+                    lambda x: self.ids.tasksTeacher.unselected_all(),
+                ]
+            ]
+            right_action_items = [["trash-can"], ["dots-vertical"]]
+        else:
+            md_bg_color = (0, 0, 0, 1)
+            left_action_items = [["menu", lambda x: self.ids.nav_drawer.set_state("open")]]
+            right_action_items = []
+            self.ids.toolbar.title = "Электронная среда - преподаватель"
+
+        self.ids.toolbar.left_action_items = left_action_items
+        self.ids.toolbar.right_action_items = right_action_items
+
+    def onSelected(self, instance_selection_list, instance_selection_item):
+        self.ids.toolbar.title = str(
+            len(instance_selection_list.get_selected_list_items())
+        )
+
+    def onUnselected(self, instance_selection_list, instance_selection_item):
+        if instance_selection_list.get_selected_list_items():
+            self.ids.toolbar.title = str(
+                len(instance_selection_list.get_selected_list_items())
+            )
 
     def openMainTeacher(self):
         self.ids.nav_drawer.set_state("close")
