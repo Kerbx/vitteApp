@@ -398,12 +398,16 @@
             MDScreen:
                 BoxLayout:
                     orientation: 'vertical'
+                    spacing: "10dp"
                     MDTopAppBar:
                         title: "Электронная среда"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
                     ScrollView:
-                        MDList:
+                        BoxLayout:
+                            adaptive_height: True
+                            orientation: 'vertical'
+                            spacing: "10dp"
                             id: tasksStud
         MDNavigationDrawer:
             id: nav_drawer

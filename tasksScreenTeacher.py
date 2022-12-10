@@ -27,7 +27,7 @@ class TasksScreenTeacher(MDScreen):
         self.separator = "<SEPARATOR>"
         self.bufferSize = 4096
         self.host = "192.168.1.120"
-        self.port = 5555
+        self.port = 55555
         
         sock = socket.socket()
         try:
@@ -47,12 +47,12 @@ class TasksScreenTeacher(MDScreen):
                 break
             _received += received
         sock.close()
-            
+      
     def addTask(self):
         self.separator = "<SEPARATOR>"
         self.bufferSize = 4096
         self.host = "192.168.1.120"
-        self.port = 5555
+        self.port = 55555
         self.path = ''
         
         self.managerDead = False
@@ -96,7 +96,7 @@ class TasksScreenTeacher(MDScreen):
         self.separator = "<SEPARATOR>"
         self.bufferSize = 4096
         self.host = "192.168.1.120"
-        self.port = 5555
+        self.port = 55555
         
         sock = socket.socket()
         try:

@@ -44,6 +44,7 @@ def acceptThread(clientSocket, address):
         
         clientSocket.close()
         print(f'[*] {address} DISCONNECTED.')
+        
     elif 'update' in received:
         filenames = next(os.walk('teacher/'), (None, None, []))[2]
         
@@ -58,8 +59,25 @@ def acceptThread(clientSocket, address):
             
         clientSocket.close()
         print(f'[*] {address} DISCONNECTED.')
+    
+    elif 'updateStud' in received:
+        filenames = next(os.walk('teacher/'), (None, None, []))[2]
+        
+        if not filenames:
+            clientSocket.close()
+            print('[!] NO FILES IN teacher/')
+            print(f'[*] {address} DISCONNECTED.')
+            return
+        
+        for i in filenames:
+            clientSocket.send((i + SEPARATOR).encode())
+            
+        clientSocket.close()
+        print(f'[*] {address} DISCONNECTED.')
+        
     elif 'send' in received:
         pass
+    
     elif 'delete' in received:
         toDelete = clientSocket.recv(BUFFER_SIZE).decode()
         print(toDelete)
@@ -72,6 +90,7 @@ def acceptThread(clientSocket, address):
                 print(f'[!] ERROR:\n{e}')
             
         clientSocket.close()
+        
     else:
         print(f'[*] NO MODE IN MESSAGE FROM {address}. THERE IS IT:\n{received}')
     

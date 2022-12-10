@@ -29,6 +29,8 @@ class LoginScreen(MDScreen):
             return
         else:
             self.ids.passwd.text = ''
+            with open('login.txt.', 'w') as file:
+                file.write(f'{username}\n{passwd}')
             if db.checkIsTeacher(username):
                 self.manager.current = 'mainTeacher'
             else:
