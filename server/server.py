@@ -7,7 +7,7 @@ from serverFuncs import acceptThread
 
 
 SERVER_HOST = "0.0.0.0"
-SERVER_PORT = 5555
+SERVER_PORT = 55555
 
 
 sock = socket.socket()
