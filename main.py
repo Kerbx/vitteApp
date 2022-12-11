@@ -21,6 +21,9 @@ from tasksScreenTeacher import TasksScreenTeacher
 
 class MyApp(MDApp):
     def build(self):
+        """Метод для сборки приложения. Здесь определяются все
+        страницы и менеджер страниц.
+        """
         self.title = 'vitteApp'
         
         self.screenManager = ScreenManager()
@@ -54,6 +57,9 @@ class MyApp(MDApp):
         return self.screenManager
     
     def switchThemeStyle(self):
+        """Метод для изменения темы с темной на светлую.
+        В темной теме главный цвет - оранжевый, в светлой - красный.
+        """
         self.theme_cls.primary_palette = (
             "Orange" if self.theme_cls.primary_palette == "Red" else "Red"
         )

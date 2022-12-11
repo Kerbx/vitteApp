@@ -4,14 +4,23 @@ import sqlite3
 
 
 class Database():
+    """Класс для работы с базой данных."""
     def __init__(self):
+        """Инициализация подключения к базе данных, а также курсора для
+        создания запросов.
+        """
         self.connection = sqlite3.connect('students.db')
         self.cursor = self.connection.cursor()
         
     def __del__(self):
+        """Деструктор класса."""
         self.connection.close()
         
     def createQuery(self, query: str) -> Union[list, bool]:
+        """Метод для создания запросов в базу данных.
+        Возвращает результат в виде списка значений или же в булевом виде -
+        означает успех выполнения команды или неудачу.
+        """
         try:
             answer = self.cursor.execute(query).fetchall()
             return answer
@@ -19,6 +28,8 @@ class Database():
             return False
          
     def createUser(self, username: str, password: str, isTeacher: bool=False) -> bool:
+        """Метод для создания пользователя в базе данных.
+        """
         if not username or not password:
             return False
         
@@ -35,6 +46,8 @@ class Database():
             return False
             
     def deleteUser(self, username: str, password: str) -> bool:
+        """Метод для удаления пользователя из базы данных.
+        """
         if not username or not password:
             return False
         try:
@@ -50,6 +63,8 @@ class Database():
             return False
 
     def checkIsTeacher(self, username: str) -> bool:
+        """Метод для проверки, является ли пользователь преподавателем.
+        """
         if not username:
             return False
         try:
@@ -61,6 +76,8 @@ class Database():
             return False
         
     def checkLogin(self, username: str, password: str) -> bool:
+        """Метод для проверки правильности введенной пары логин-пароль.
+        """
         if not username or not password:
             return False
         try:

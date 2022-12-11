@@ -4,6 +4,8 @@ import unittest
 
 
 class TestDatabase(unittest.TestCase):
+    """Класс с юнит-тестами для файла работы с базой данных (database.py.)
+    """
     def setUp(self) -> None:
         self.db = Database()
         
