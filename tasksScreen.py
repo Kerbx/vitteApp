@@ -12,6 +12,8 @@ from kivymd.uix.snackbar import Snackbar
 
 class TasksScreen(MDScreen):
     def update(self):
+        """Метод для автоматического обновления страницы при заходе на нее.
+        """
         while self.ids.tasksStud.children:
             for i in self.ids.tasksStud.children:
                 self.ids.tasksStud.remove_widget(i)
@@ -26,7 +28,11 @@ class TasksScreen(MDScreen):
         try:
             sock.connect((host, port))
         except OSError:
-            Snackbar(text="Нет подключения к серверу...", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()
+            Snackbar(text="Нет подключения к серверу...",
+                     snackbar_x="10dp",
+                     snackbar_y="10dp",
+                     size_hint_x= \
+                     (Window.width - (10 * 2)) / Window.width).open()
 
         sock.send('updateStud'.encode())
         
@@ -59,28 +65,42 @@ class TasksScreen(MDScreen):
         sock.close()
     
     def sendAnswer(self, task):
+        """Метод для отправки ответа на задание.
+        """
         pass
     
     def loadTask(self, task):
-        pass
+        """Метод для загрузки задания от преподавателя.
+        """
+        
     
     def openMain(self):
+        """Данный метод открывает главную страницу.
+        """
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'main'
         
     def openCalendar(self):
-        self.manager.current = 'calendar'
+        """Данный метод открывает страницу календаря.
+        """
         self.ids.nav_drawer.set_state("close")
+        self.manager.current = 'calendar'
         
     def openTasks(self):
+        """Данный метод открывает страницу с заданиями.
+        """
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'tasks'
         
     def logout(self):
+        """Данный метод открывает страницу логина.
+        """
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'login'
-
+        
     def openSettings(self):
+        """Данный метод открывает страницу настроек.
+        """
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'settings'
         

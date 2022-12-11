@@ -47,7 +47,7 @@ class LoginScreen(MDScreen):
             # Тут в файл записывается логин-пароль, чтобы потом со стороны
             # студента при прикреплении файла отправлять также кем этот
             # файл был прикреплен.
-            with open('login.txt.', 'w') as file:
+            with open('login.txt', 'w') as file:
                 file.write(f'{username}\n{passwd}')
             if db.checkIsTeacher(username):
                 self.manager.current = 'mainTeacher'
