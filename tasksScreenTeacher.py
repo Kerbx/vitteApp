@@ -80,14 +80,12 @@ class TasksScreenTeacher(MDScreen):
             sock.send('upload'.encode())
             if 'receiving' in sock.recv(self.bufferSize).decode():
                 sock.send(f"{os.path.split(self.path)[1]}{self.separator}{filesize}".encode())
-                # progress = tqdm.tqdm(range(filesize), f"Sending {filename}", unit="B", unit_scale=True, unit_divisor=1024)
                 with open(self.path, "rb") as file:
                     while True:
                         bytes_read = file.read(self.bufferSize)
                         if not bytes_read:
                             break
                         sock.sendall(bytes_read)
-                        # progress.update(len(bytes_read))
                 sock.close()
             
             Snackbar(text="Файл успешно загружен.", snackbar_x="10dp", snackbar_y="10dp", size_hint_x=(Window.width - (10 * 2)) / Window.width).open()

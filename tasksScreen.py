@@ -47,6 +47,7 @@ class TasksScreen(MDScreen):
                                 on_press=self.loadTask(i)
                             ),
                             spacing="10dp",
+                            orientation="vertical",
                             adaptive_height=True
                         ),
                         panel_cls=MDExpansionPanelOneLine(
