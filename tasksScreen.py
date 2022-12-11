@@ -2,6 +2,13 @@ import kivy
 kivy.require('2.1.0')
 import socket
 
+try:
+    from android.storage import primary_external_storage_path
+    from android.permissions import request_permissions, Permission
+    request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
+except ModuleNotFoundError:
+    pass
+
 from kivy.core.window import Window
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDRaisedButton
@@ -28,12 +35,14 @@ class TasksScreen(MDScreen):
         try:
             sock.connect((host, port))
         except OSError:
+            sock.close()
             Snackbar(text="Нет подключения к серверу...",
                      snackbar_x="10dp",
                      snackbar_y="10dp",
                      size_hint_x= \
                      (Window.width - (10 * 2)) / Window.width).open()
-
+            return
+        
         sock.send('updateStud'.encode())
         
         received = ''
@@ -70,9 +79,41 @@ class TasksScreen(MDScreen):
         pass
     
     def loadTask(self, task):
+        pass
         """Метод для загрузки задания от преподавателя.
         """
         
+        # ОНО ВИСНЕТ. ПОТОМ РАЗБЕРУСЬ.
+        """separator = "<SEPARATOR>"
+        bufferSize = 4096
+        host = "192.168.1.120"
+        port = 55555
+        
+        sock = socket.socket()
+        
+        try:
+            sock.connect((host, port))
+        except OSError:
+            sock.close()
+            Snackbar(text="Нет подключения к серверу...",
+                     snackbar_x="10dp", snackbar_y="10dp",
+                     size_hint_x= \
+                         (Window.width - (10 * 2)) / Window.width).open()
+            return
+        
+        sock.send('send'.encode())
+        sock.send(task.encode())
+        
+        fileinfo = sock.recv(bufferSize).decode().split(separator)
+        
+        with open(f'{primary_external_storage_path()}/{fileinfo[0]}', "wb") as file:
+            while True:
+                bytesRead = sock.recv(bufferSize)
+                if not bytesRead:    
+                    break
+                
+                file.write(bytesRead)"""
+                        
     
     def openMain(self):
         """Данный метод открывает главную страницу.

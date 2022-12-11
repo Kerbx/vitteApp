@@ -94,9 +94,23 @@ def acceptThread(clientSocket, address):
         clientSocket.close()
         print(f'[*] {address} DISCONNECTED.')
     
-    # Вообще хезе, зачем этот метод.
     elif 'send' in received:
         pass
+        """file = clientSocket.recv(BUFFER_SIZE).decode()
+        
+        path = 'teacher/' + file
+        filesize = os.path.getsize(path)
+        
+        fileinfo = file + SEPARATOR + str(filesize)
+        
+        clientSocket.send(fileinfo.encode())
+        
+        with open(path, "rb") as file:
+            while True:
+                bytes_read = file.read(BUFFER_SIZE)
+                if not bytes_read:
+                    break
+                clientSocket.send(bytes_read)"""
     
     # Этот метод для удаления файлов, загруженных преподом.
     # Просто получает список файлов для удаления и удаляет.
