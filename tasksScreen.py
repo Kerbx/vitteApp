@@ -16,6 +16,8 @@ from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelOneLine
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.snackbar import Snackbar
 
+from config import SERVER_IP, SERVER_PORT
+
 
 class TasksScreen(MDScreen):
     def update(self):
@@ -27,8 +29,8 @@ class TasksScreen(MDScreen):
                 
         separator = "<SEPARATOR>"
         bufferSize = 4096
-        host = "192.168.1.120"
-        port = 55555
+        host = SERVER_IP
+        port = SERVER_PORT
         
         sock = socket.socket()
         
@@ -86,8 +88,8 @@ class TasksScreen(MDScreen):
         # ОНО ВИСНЕТ. ПОТОМ РАЗБЕРУСЬ.
         """separator = "<SEPARATOR>"
         bufferSize = 4096
-        host = "192.168.1.120"
-        port = 55555
+        host = SERVER_IP
+        port = SERVER_PORT
         
         sock = socket.socket()
         

@@ -44,7 +44,10 @@ def acceptThread(clientSocket, address):
         # Создаем файл в виде потока байтов, чтобы сохранить его в целости.
         with open(f'teacher/{filename}', "wb") as file:
             while True:
-                bytesRead = clientSocket.recv(BUFFER_SIZE)
+                try:
+                    bytesRead = clientSocket.recv(BUFFER_SIZE)
+                except Exception as e:
+                    print(f'[!] SOME ERROR OCCUPIED:\n{e}')
                 if not bytesRead:    
                     break
                 

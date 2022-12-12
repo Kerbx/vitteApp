@@ -17,6 +17,8 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.selection.selection import SelectionItem
 from kivymd.uix.snackbar import Snackbar
 
+from config import SERVER_IP, SERVER_PORT
+
 
 class TasksScreenTeacher(MDScreen):
     def update(self):
@@ -28,8 +30,8 @@ class TasksScreenTeacher(MDScreen):
             
         self.separator = "<SEPARATOR>"
         self.bufferSize = 4096
-        self.host = "192.168.1.120"
-        self.port = 55555
+        self.host = SERVER_IP
+        self.port = SERVER_PORT
         
         sock = socket.socket()
         try:
@@ -58,8 +60,8 @@ class TasksScreenTeacher(MDScreen):
         """
         self.separator = "<SEPARATOR>"
         self.bufferSize = 4096
-        self.host = "192.168.1.120"
-        self.port = 55555
+        self.host = SERVER_IP
+        self.port = SERVER_PORT
         self.path = ''
         
         self.managerDead = False
@@ -118,8 +120,8 @@ class TasksScreenTeacher(MDScreen):
         """
         self.separator = "<SEPARATOR>"
         self.bufferSize = 4096
-        self.host = "192.168.1.120"
-        self.port = 55555
+        self.host = SERVER_IP
+        self.port = SERVER_PORT
         
         sock = socket.socket()
         try:
