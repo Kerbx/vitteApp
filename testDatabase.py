@@ -37,6 +37,10 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(type(self.db.createQuery('ale')), bool)
         self.assertEqual(type(self.db.createQuery('select user from students')), bool)
         
-    
+    def testCheckIsTeacher(self):
+        self.assertTrue(self.db.checkIsTeacher('admin'))
+        self.assertFalse(self.db.checkIsTeacher('VOVA'))
+
+        
 if __name__ == '__main__':
     unittest.main()
