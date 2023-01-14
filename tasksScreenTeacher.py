@@ -89,8 +89,9 @@ class TasksScreenTeacher(MDScreen):
             filesize = os.path.getsize(self.path)
             sock = socket.socket()
             try:
+                sock.settimeout(3)
                 sock.connect((self.host, self.port))
-            except OSError:
+            except OSError or TimeoutError:
                 sock.close()
                 Snackbar(text="Нет подключения к серверу...",
                          snackbar_x="10dp",
