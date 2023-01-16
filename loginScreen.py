@@ -48,7 +48,7 @@ class LoginScreen(MDScreen):
             # студента при прикреплении файла отправлять также кем этот
             # файл был прикреплен.
             with open('login.txt', 'w') as file:
-                file.write(f'{username}\n{passwd}')
+                file.write(f'{username}\n{passwd}\n{db.checkIsTeacher(username)}')
             if db.checkIsTeacher(username):
                 self.manager.current = 'mainTeacher'
             else:

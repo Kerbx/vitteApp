@@ -10,7 +10,11 @@ from kivymd.uix.screenmanager import ScreenManager
 
 from calendarScreen import CalendarScreen
 from calendarScreenTeacher import CalendarScreenTeacher
+from chatScreen import ChatScreen
+from faqScreen import FAQScreen
+from helpScreen import HelpScreen
 from loginScreen import LoginScreen
+from newsScreen import NewsScreen
 from mainScreen import MainScreen
 from mainScreenTeacher import MainScreenTeacher
 from settingsScreen import SettingsScreen
@@ -36,6 +40,10 @@ class MyApp(MDApp):
         self.tasksTeacher = TasksScreenTeacher(name='tasksTeacher')
         self.settingsScreen = SettingsScreen(name='settings')
         self.settingsTeacher = SettingsScreenTeacher(name='settingsTeacher')
+        self.news = NewsScreen(name='news')
+        self.chat = ChatScreen(name='chat')
+        self.faq = FAQScreen(name='faq')
+        self.help = HelpScreen(name='help')
         
         self.screenManager.add_widget(self.loginScreen)
         self.screenManager.add_widget(self.mainScreen)
@@ -46,7 +54,11 @@ class MyApp(MDApp):
         self.screenManager.add_widget(self.tasksTeacher)
         self.screenManager.add_widget(self.settingsScreen)
         self.screenManager.add_widget(self.settingsTeacher)
-
+        self.screenManager.add_widget(self.news)
+        self.screenManager.add_widget(self.chat)
+        self.screenManager.add_widget(self.faq)
+        self.screenManager.add_widget(self.help)
+        
         self.theme_cls.theme_style_switch_animation = True
         self.theme_cls.theme_style_switch_animation_duration = 0.8
         
