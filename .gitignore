@@ -4,4 +4,3 @@ bin/
 .buildozer/
 __pycache__/
 *.pyc
-login.txt
