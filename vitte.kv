@@ -750,7 +750,17 @@
                             on_press:root.logout()
                             IconLeftWidget:
                                 icon: "logout"
-                                
+
+<Q1>:
+    adaptive_height: True
+    OneLineListItem:
+        text: "Наш адрес - 2-й Кожуховский проезд, 12с2."
+
+<Q2>:
+    adaptive_height: True
+    OneLineListItem:
+        text: "У нас есть множество разных направлений - советуем посмотреть все на официальном сайте."
+
 <FAQScreen>:
     MDNavigationLayout:
         MDScreenManager:
@@ -761,11 +771,11 @@
                         title: "Электронная среда"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
-                    ScrollView:
-                        MDList:
-                            OneLineListItem:
-                                text: "Темная/светлая тема"
-                                on_press: app.switchThemeStyle()
+                    MDScrollView:
+                        MDGridLayout:
+                            id: faq
+                            cols: 1
+                            adaptive_height: True
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:

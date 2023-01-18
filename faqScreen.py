@@ -1,13 +1,41 @@
 import kivy
 kivy.require('2.1.0')
 
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelOneLine
 
 
 user = open('login.txt').read().split('\n')
 
 
+class Q1(MDBoxLayout):
+    pass
+
+
+class Q2(MDBoxLayout):
+    pass
+
+
 class FAQScreen(MDScreen):
+    def on_enter(self):
+        self.ids.faq.add_widget(
+            MDExpansionPanel(
+                content=Q1(),
+                panel_cls=MDExpansionPanelOneLine(
+                    text="Где вы находитесь?"
+                )
+            )
+        )
+        self.ids.faq.add_widget(
+            MDExpansionPanel(
+                content=Q2(),
+                panel_cls=MDExpansionPanelOneLine(
+                    text="Какие у вас есть специальности?"
+                )
+            )
+        )
+        
     def openMain(self):
         """Данный метод открывает главную страницу.
         """
