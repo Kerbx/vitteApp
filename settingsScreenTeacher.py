@@ -36,4 +36,28 @@ class SettingsScreenTeacher(MDScreen):
         """
         self.ids.nav_drawer.set_state("close")
         self.manager.current = 'settingsTeacher'
+    
+    def openHelp(self):
+        """Данный метод открывает страницу помощи.
+        """
+        self.ids.nav_drawer.set_state("close")
+        self.manager.current = 'help'
+        
+    def openFAQ(self):
+        """Данный метод открывает FAQ
+        """
+        self.ids.nav_drawer.set_state("close")
+        self.manager.current = 'faq'
+    
+    def openNews(self):
+        """Данный метод открывает страницу новостей
+        """
+        self.ids.nav_drawer.set_state("close")
+        self.manager.current = 'news'
+        
+    def openChat(self):
+        """Данный метод открывает страницу чата
+        """
+        self.ids.nav_drawer.set_state("close")
+        self.manager.current = 'chat'
         

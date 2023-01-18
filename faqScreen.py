@@ -4,7 +4,7 @@ kivy.require('2.1.0')
 from kivymd.uix.screen import MDScreen
 
 
-user = open('login.txt').split('\n')
+user = open('login.txt').read().split('\n')
 
 
 class FAQScreen(MDScreen):
