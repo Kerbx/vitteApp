@@ -17,24 +17,45 @@ class Q2(MDBoxLayout):
     pass
 
 
+class Q3(MDBoxLayout):
+    pass
+
+
+class Q4(MDBoxLayout):
+    pass
+
+
+class Q5(MDBoxLayout):
+    pass
+
+
+class Q6(MDBoxLayout):
+    pass
+
+
+questions = [
+    "Где вы находитесь?",
+    "Какие у вас есть специальности?",
+    "Сколько стоит обучение?",
+    "Есть ли общежитие?",
+    "Какой диплом я получу?",
+    "Помогают ли с трудоустройством?"
+]
+
+answers = [Q1, Q2, Q3, Q4, Q5, Q6]
+
+
 class FAQScreen(MDScreen):
     def on_enter(self):
-        self.ids.faq.add_widget(
-            MDExpansionPanel(
-                content=Q1(),
-                panel_cls=MDExpansionPanelOneLine(
-                    text="Где вы находитесь?"
+        for i in range(0, len(questions)):
+            self.ids.faq.add_widget(
+                MDExpansionPanel(
+                    content=answers[i](),
+                    panel_cls=MDExpansionPanelOneLine(
+                        text=questions[i]
+                    )
                 )
             )
-        )
-        self.ids.faq.add_widget(
-            MDExpansionPanel(
-                content=Q2(),
-                panel_cls=MDExpansionPanelOneLine(
-                    text="Какие у вас есть специальности?"
-                )
-            )
-        )
         
     def openMain(self):
         """Данный метод открывает главную страницу.
