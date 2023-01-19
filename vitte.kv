@@ -998,7 +998,22 @@
                         title: "Электронная среда"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 1
-                    
+                    AnchorLayout:
+                        anchor_y: 'top'
+                        MDScrollView:
+                            MDLabel:
+                                id: chat
+                    AnchorLayout:
+                        anchor_y: 'bottom'
+                        GridLayout:
+                            cols: 2
+                            MDTextField:
+                                id: message
+                            MDFlatButton:
+                                text: "Отправить"
+                                md_bg_color: app.theme_cls.primary_color
+                                id: send
+                                on_press:root.sendMessage()
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
