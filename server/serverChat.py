@@ -3,7 +3,7 @@ import sys
 import threading
 
 
-SERVER_HOST = "192.168.1.173" # Берем айпишник нашего ПК и используем
+SERVER_HOST = "0.0.0.0" # Берем айпишник нашего ПК и используем
                         # в качестве айпи для подключенияю
 SERVER_PORT = 55556
 
@@ -21,9 +21,11 @@ def receive(client: socket.socket, address):
         except:
             continue
         else:
-            print(message)
             for _client in clients:
-                _client.send(message.encode())
+                try:
+                    _client.send(message.encode())
+                except:
+                    pass
 
 # Допускается до 5-ти клиентов одновременно.
 # При большем количестве - меняем цифру в listen().

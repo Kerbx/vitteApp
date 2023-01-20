@@ -6,9 +6,6 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelOneLine
 
 
-user = open('login.txt').read().split('\n')
-
-
 class Q1(MDBoxLayout):
     pass
 
@@ -47,6 +44,7 @@ answers = [Q1, Q2, Q3, Q4, Q5, Q6]
 
 class FAQScreen(MDScreen):
     def on_enter(self):
+        self.user = open('login.txt').read().split('\n')
         for i in range(0, len(questions)):
             self.ids.faq.add_widget(
                 MDExpansionPanel(
@@ -60,7 +58,7 @@ class FAQScreen(MDScreen):
     def openMain(self):
         """Данный метод открывает главную страницу.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'mainTeacher'
         else:
@@ -70,7 +68,7 @@ class FAQScreen(MDScreen):
     def openCalendar(self):
         """Данный метод открывает страницу календаря.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'calendarTeacher'
         else:
@@ -80,7 +78,7 @@ class FAQScreen(MDScreen):
     def openTasks(self):
         """Данный метод открывает страницу с заданиями.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'tasksTeacher'
         else:
@@ -96,7 +94,7 @@ class FAQScreen(MDScreen):
     def openSettings(self):
         """Данный метод открывает страницу настроек.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'settingsTeacher'
         else:

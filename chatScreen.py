@@ -10,9 +10,6 @@ from kivymd.uix.snackbar import Snackbar
 from config import SERVER_IP, SERVER_PORT_CHAT
 
 
-user = open('login.txt').read().split('\n')
-
-
 def updateMessage(selfObj):
     sock = socket.socket()
     try:
@@ -32,17 +29,15 @@ def updateMessage(selfObj):
 
 class ChatScreen(MDScreen):
     def on_enter(self):
+        self.user = open('login.txt').read().split('\n')
         self.process = threading.Thread(target=updateMessage, args=(self,))
         self.process.start()
-        
-    def on_leave(self):
-        del self.process
         
     def sendMessage(self):
         text = self.ids.message.text
         self.ids.message.text = ''
         
-        name = user[0]
+        name = self.user[0]
         
         message = f"{name}: {text}"
         
@@ -64,7 +59,7 @@ class ChatScreen(MDScreen):
     def openMain(self):
         """Данный метод открывает главную страницу.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'mainTeacher'
         else:
@@ -74,7 +69,7 @@ class ChatScreen(MDScreen):
     def openCalendar(self):
         """Данный метод открывает страницу календаря.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'calendarTeacher'
         else:
@@ -84,7 +79,7 @@ class ChatScreen(MDScreen):
     def openTasks(self):
         """Данный метод открывает страницу с заданиями.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'tasksTeacher'
         else:
@@ -100,7 +95,7 @@ class ChatScreen(MDScreen):
     def openSettings(self):
         """Данный метод открывает страницу настроек.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'settingsTeacher'
         else:

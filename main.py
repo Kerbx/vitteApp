@@ -65,7 +65,7 @@ class MyApp(MDApp):
         self.theme_cls.theme_style = 'Dark'
         self.theme_cls.primary_palette = "Orange"
         
-        self.screenManager.current = 'chat'
+        self.screenManager.current = 'login'
         return self.screenManager
     
     def switchThemeStyle(self):

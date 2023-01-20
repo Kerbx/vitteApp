@@ -4,14 +4,14 @@ kivy.require('2.1.0')
 from kivymd.uix.screen import MDScreen
 
 
-user = open('login.txt').read().split('\n')
-
-
 class HelpScreen(MDScreen):
+    def on_enter(self, *args):
+        self.user = open('login.txt').read().split('\n')
+        
     def openMain(self):
         """Данный метод открывает главную страницу.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'mainTeacher'
         else:
@@ -21,7 +21,7 @@ class HelpScreen(MDScreen):
     def openCalendar(self):
         """Данный метод открывает страницу календаря.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'calendarTeacher'
         else:
@@ -31,7 +31,7 @@ class HelpScreen(MDScreen):
     def openTasks(self):
         """Данный метод открывает страницу с заданиями.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'tasksTeacher'
         else:
@@ -47,7 +47,7 @@ class HelpScreen(MDScreen):
     def openSettings(self):
         """Данный метод открывает страницу настроек.
         """
-        if user[-1] == 'True':
+        if self.user[-1] == 'True':
             self.ids.nav_drawer.set_state("close")
             self.manager.current = 'settingsTeacher'
         else:
