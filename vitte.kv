@@ -298,6 +298,14 @@
                             OneLineListItem:
                                 text: "Темная/светлая тема"
                                 on_press: app.switchThemeStyle()
+                            
+                    MDTextField:
+                        id: ip
+                        multiline: False
+                        mode: "fill"
+                        hint_text: 'Введите IP-адрес'
+                        on_text_validate: root.updateIP()
+                        
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -612,6 +620,13 @@
                             OneLineListItem:
                                 text: "Темная/светлая тема"
                                 on_press: app.switchThemeStyle()
+                    MDTextField:
+                        id: ip
+                        multiline: False
+                        mode: "fill"
+                        hint_text: 'Введите IP-адрес'
+                        on_text_validate: root.updateIP()
+                        
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -1007,6 +1022,9 @@
                     GridLayout:
                         cols: 2
                         MDTextField:
+                            multiline: False
+                            mode: "fill"
+                            hint_text: 'Введите сообщение'
                             on_text_validate:root.sendMessage()
                             id: message
                         MDFlatButton:

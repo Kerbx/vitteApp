@@ -18,7 +18,8 @@ def updateMessage(selfObj):
     except OSError or TimeoutError:
         sock.close()
         return
-    while True:
+    thread = threading.currentThread()
+    while getattr(thread, "alive", True):
         try:
             message = sock.recv(4096).decode()
         except:
@@ -32,6 +33,9 @@ class ChatScreen(MDScreen):
         self.user = open('login.txt').read().split('\n')
         self.process = threading.Thread(target=updateMessage, args=(self,))
         self.process.start()
+        
+    def on_leave(self):
+        self.process.alive = False
         
     def sendMessage(self):
         text = self.ids.message.text

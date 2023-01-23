@@ -7,6 +7,26 @@ from kivymd.uix.screen import MDScreen
 class SettingsScreenTeacher(MDScreen):
     """Класс для страницы настроек.
     """
+    def updateIP(self):
+        """Метод для обновления IP-адреса в файле config.py.
+        """
+        ip = self.ids.ip.text
+        if not ip:
+            return
+        
+        fileInfo = open('config.py').read().split('\n')
+        fileInfo[0] = f'SERVER_IP = "{ip}"'
+        
+        info = ''
+        
+        for i in fileInfo:
+            info += i + '\n'
+        
+        info = info[:-1]
+        
+        with open('config.py', 'w') as file:
+            file.write(info)
+          
     def openMainTeacher(self):
         """Данный метод открывает главную страницу.
         """
