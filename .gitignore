@@ -1,6 +1,5 @@
 client.py
 buildozer.spec
-bin/
 .buildozer/
 __pycache__/
 *.pyc
