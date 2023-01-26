@@ -3,6 +3,9 @@ kivy.require('2.1.0')
 
 from kivymd.uix.screen import MDScreen
 
+import config
+
+
 class SettingsScreen(MDScreen):
     """Класс для страницы настроек.
     """
@@ -12,20 +15,8 @@ class SettingsScreen(MDScreen):
         ip = self.ids.ip.text
         if not ip:
             return
+        config.SERVER_IP = ip
         
-        fileInfo = open('config.py').read().split('\n')
-        fileInfo[0] = f'SERVER_IP = "{ip}"'
-        
-        info = ''
-        
-        for i in fileInfo:
-            info += i + '\n'
-        
-        info = info[:-1]
-        
-        with open('config.py', 'w') as file:
-            file.write(info)
-            
     def openMain(self):
         """Данный метод открывает главную страницу.
         """
