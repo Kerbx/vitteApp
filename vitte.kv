@@ -49,6 +49,13 @@
                         title: "Электронная среда - преподаватель"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 2
+                    FitImage:
+                        size_hint_y: None
+                        source: 'image.png'
+                    MDLabel:
+                        text: "Название учетной записи"
+                    MDLabel:
+                        text: "Описание учетной записи."
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -379,6 +386,13 @@
                         title: "Электронная среда"
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         elevation: 2
+                    FitImage:
+                        size_hint_y: None
+                        source: 'image.png'
+                    MDLabel:
+                        text: "Название учетной записи"
+                    MDLabel:
+                        text: "Описание учетной записи."
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
