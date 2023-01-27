@@ -56,12 +56,12 @@ class TasksScreen(MDScreen):
                     self.ids.tasksStud.add_widget(MDExpansionPanel(
                         content=MDBoxLayout(
                             MDRaisedButton(
-                                text='Добавить ответ на задание',
-                                on_press=self.sendAnswer(i)
+                                text=f'Добавить ответ на задание {i}',
+                                on_press=self.sendAnswer
                             ),
                             MDRaisedButton(
-                                text='Загрузить задание',
-                                on_press=self.loadTask(i)
+                                text=f'Загрузить задание {i}',
+                                on_press=self.loadTask,
                             ),
                             spacing="10dp",
                             orientation="vertical",
@@ -75,18 +75,18 @@ class TasksScreen(MDScreen):
             _received += received
         sock.close()
     
-    def sendAnswer(self, task):
+    def sendAnswer(self, value):
         """Метод для отправки ответа на задание.
         """
         pass
     
-    def loadTask(self, task):
+    def loadTask(self, value):
         pass
         """Метод для загрузки задания от преподавателя.
         """
         
-        # ОНО ВИСНЕТ. ПОТОМ РАЗБЕРУСЬ.
-        """separator = "<SEPARATOR>"
+
+        separator = "<SEPARATOR>"
         bufferSize = 4096
         host = SERVER_IP
         port = SERVER_PORT
@@ -94,15 +94,16 @@ class TasksScreen(MDScreen):
         sock = socket.socket()
         
         try:
+            sock.settimeout(None)
             sock.connect((host, port))
-        except OSError:
+        except OSError or TimeoutError:
             sock.close()
             Snackbar(text="Нет подключения к серверу...",
                      snackbar_x="10dp", snackbar_y="10dp",
                      size_hint_x= \
                          (Window.width - (10 * 2)) / Window.width).open()
             return
-        
+        task = value.text.split(' ')[-1]
         sock.send('send'.encode())
         sock.send(task.encode())
         
@@ -111,11 +112,13 @@ class TasksScreen(MDScreen):
         with open(f'{primary_external_storage_path()}/{fileinfo[0]}', "wb") as file:
             while True:
                 bytesRead = sock.recv(bufferSize)
-                if not bytesRead:    
+                print(bytesRead)
+                if not bytesRead:
+                    print('over')    
+                    sock.close()
                     break
                 
-                file.write(bytesRead)"""
-                        
+                file.write(bytesRead)
     
     def openMain(self):
         """Данный метод открывает главную страницу.

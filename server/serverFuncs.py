@@ -98,8 +98,7 @@ def acceptThread(clientSocket, address):
         print(f'[*] {address} DISCONNECTED.')
     
     elif 'send' in received:
-        pass
-        """file = clientSocket.recv(BUFFER_SIZE).decode()
+        file = clientSocket.recv(BUFFER_SIZE).decode()
         
         path = 'teacher/' + file
         filesize = os.path.getsize(path)
@@ -113,7 +112,9 @@ def acceptThread(clientSocket, address):
                 bytes_read = file.read(BUFFER_SIZE)
                 if not bytes_read:
                     break
-                clientSocket.send(bytes_read)"""
+                clientSocket.send(bytes_read)
+            
+        clientSocket.close()
     
     # Этот метод для удаления файлов, загруженных преподом.
     # Просто получает список файлов для удаления и удаляет.
